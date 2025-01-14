@@ -1,0 +1,22 @@
+name: Build
+
+on: [push, pull_request]
+
+jobs:
+  Windows-VC:
+    runs-on: windows-2022
+    timeout-minutes: 10
+    steps:
+      - name: "Checkout"
+        with: 
+            repository: 'https://github.com/mruby/mruby.git'
+        uses: actions/checkout@v4
+      - name: Get tags
+        run: git fetch --tags ${{ github.ref_name }}
+      - name: Ruby version
+        run: ruby -v
+      - name: Build and test
+        shell: cmd
+        run: |
+          call "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\Build\vcvars64.bat"
+          rake all
