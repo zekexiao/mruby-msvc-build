@@ -15,7 +15,10 @@ jobs:
       - name: Ruby version
         run: ruby -v
       - name: Download Config
-        run: wget https://raw.githubusercontent.com/zekexiao/mruby-build/refs/heads/master/msvc.rb
+        uses: valitydev/action-download-file@v1
+        with:
+          url: https://raw.githubusercontent.com/zekexiao/mruby-build/refs/heads/master/msvc.rb
+          target-path: .
       - name: Build and test
         shell: cmd
         run: |
