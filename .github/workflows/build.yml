@@ -27,10 +27,10 @@ jobs:
       - name: Clean
         shell: cmd
         run: |
-          rmdir /s/q build/host/src
-          rmdir /s/q build/host/mrbgems
-          rmdir /s/q build/host/mrblib
-          rmdir /s/q build/host/mrbc
+          rmdir /s/q build\host\src
+          rmdir /s/q build\host\mrbgems
+          rmdir /s/q build\host\mrblib
+          rmdir /s/q build\host\mrbc
       - name: Upload
         with:
           path: build/host
