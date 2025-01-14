@@ -10,9 +10,8 @@ jobs:
       - name: "Checkout"
         with: 
             repository: 'mruby/mruby'
+            ref: '3.3.0'
         uses: actions/checkout@v4
-      - name: Get tags
-        run: git fetch --tags ${{ github.ref_name }}
       - name: Ruby version
         run: ruby -v
       - name: Build and test
