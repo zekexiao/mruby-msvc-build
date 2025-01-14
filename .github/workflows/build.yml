@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: "Checkout"
         with: 
-            repository: 'https://github.com/mruby/mruby.git'
+            repository: 'mruby/mruby'
         uses: actions/checkout@v4
       - name: Get tags
         run: git fetch --tags ${{ github.ref_name }}
