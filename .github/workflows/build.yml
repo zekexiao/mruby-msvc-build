@@ -14,11 +14,11 @@ jobs:
         uses: actions/checkout@v4
       - name: Ruby version
         run: ruby -v
-      - name: Download Config
-        uses: valitydev/action-download-file@v1
+      - uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 # 1.6.0
+        name: Download the file
         with:
-          url: https://raw.githubusercontent.com/zekexiao/mruby-build/refs/heads/master/msvc.rb
-          target-path: .
+          url: "https://raw.githubusercontent.com/zekexiao/mruby-build/refs/heads/master/msvc.rb"
+          target: ./
       - name: Build and test
         shell: cmd
         run: |
