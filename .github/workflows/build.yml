@@ -10,7 +10,7 @@ jobs:
       - name: "Checkout"
         with: 
             repository: 'mruby/mruby'
-            ref: '3.3.0'
+            ref: '3.4.0'
         uses: actions/checkout@v4
       - name: Ruby version
         run: ruby -v
