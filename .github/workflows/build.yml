@@ -1,6 +1,10 @@
 name: Build
 
-on: [push, pull_request]
+on:
+  push:
+    tags:
+      - '*'
+  pull_request:
 
 jobs:
   Windows-VC:
@@ -35,3 +39,9 @@ jobs:
         with:
           path: build/host
         uses: actions/upload-artifact@v4
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: build/host/**
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
