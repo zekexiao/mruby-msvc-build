@@ -9,7 +9,7 @@ end
 MRuby::Build.new do |conf|
   conf.toolchain :visualcpp
 
-  conf.gem :github => 'buty4649/mruby-yyjson'
+  conf.gem :github => 'buty4649/mruby-yyjson', :branch => 'main'
 
   # include all core GEMs
   conf.gembox 'full-core'
