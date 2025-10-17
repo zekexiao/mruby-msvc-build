@@ -9,12 +9,12 @@ end
 MRuby::Build.new do |conf|
   conf.toolchain :visualcpp
 
-  conf.gem :github => 'mattn/mruby-json'
+  conf.gem :github => 'buty4649/mruby-yyjson'
 
   # include all core GEMs
   conf.gembox 'full-core'
   conf.compilers.each do |c|
-    c.defines += %w(MRB_GC_FIXED_ARENA)
+    c.defines += %w(MRB_UTF8_STRING)
   end
   setup_option(conf)
 end
