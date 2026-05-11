@@ -15,9 +15,14 @@ jobs:
       - name: Ruby version
         run: ruby -v
       - uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 # 1.6.0
-        name: Download the file
+        name: Download msvc.rb
         with:
           url: "https://raw.githubusercontent.com/zekexiao/mruby-build/refs/heads/master/msvc.rb"
+          target: ./
+      - uses: suisei-cn/actions-download-file@818d6b7dc8fe73f2f924b6241f2b1134ca1377d9 # 1.6.0
+        name: Download CMakeLists.txt
+        with:
+          url: "https://raw.githubusercontent.com/zekexiao/mruby-msvc-build/refs/heads/master/CMakeLists.txt"
           target: ./
       - name: Build and test
         shell: cmd
@@ -31,13 +36,19 @@ jobs:
           rmdir /s/q build\host\mrbgems
           rmdir /s/q build\host\mrblib
           rmdir /s/q build\host\mrbc
+      - name: Package
+        shell: pwsh
+        run: |
+          Copy-Item CMakeLists.txt build\host\
+          Compress-Archive -Path build\host\* -DestinationPath mruby-msvc-x64.zip
       - name: Upload
-        with:
-          path: build/host
         uses: actions/upload-artifact@v4
+        with:
+          name: mruby-msvc-x64
+          path: mruby-msvc-x64.zip
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          files: build/host/**
+          files: mruby-msvc-x64.zip
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
