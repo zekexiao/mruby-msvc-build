@@ -15,6 +15,8 @@ MRuby::Build.new do |conf|
   conf.gembox 'full-core'
   conf.compilers.each do |c|
     c.defines += %w(MRB_UTF8_STRING)
+    c.defines += %w(MRB_USE_CXX_EXCEPTION)
+    c.defines += %w(MRB_USE_CXX_ABI)
   end
   setup_option(conf)
 end
